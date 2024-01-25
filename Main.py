@@ -27,7 +27,7 @@ def BlackJackGame():
 
     global playerCardTracker 
     playerCardTracker = 0
-        
+
     global dealerCardTracker
     dealerCardTracker =0
 
@@ -76,7 +76,7 @@ def BlackJackGame():
         cim = card.resize((95,145), Image.ANTIALIAS)
         im_card = ImageTk.PhotoImage(cim) 
         image_List.append(im_card)
-    
+
     def hitandStandDestroy():
         hitButton_List[globals()['frameCount']].destroy()
         standButton_List[globals()['frameCount']].destroy()
@@ -125,7 +125,7 @@ def BlackJackGame():
         d.draw(deck)
         drawAdds(d.getSuit(),d.getVal())
         globals()['downCardIndex'] = globals()['imageCount']
-        Label(frame_List[globals()['frameCount']], image = imbc).place(x = 300 + globals()['dealerCardTracker'], y = 100)
+        Label(frame_List[globals()['frameCount']], image = mbc).place(x = 300 + globals()['dealerCardTracker'], y = 100)
         globals()['imageCount'] += 1
         globals()['dealerCardTracker'] += 100
 
@@ -222,7 +222,7 @@ def BlackJackGame():
         else:
             Label(frame_List[globals()['frameCount']], image = image_List[globals()['downCardIndex']]).place(x = 300, y = 100)
             doubleButton_List[globals()['frameCount']].destroy()
-        
+
             while(d.score() < 17):
                 d.draw(deck)
                 getCardString(d.getSuit(),d.getVal())
@@ -368,16 +368,16 @@ def BlackJackGame():
         d.holdingDraw()
         getCardString(d.getSuit(),d.getVal())
         globals()['downCardIndex'] = globals()['imageCount']
-        Label(frame_List[globals()['frameCount']], image = imbc).place(x = 300 + globals()['dealerCardTracker'] , y = 100)
+        Label(frame_List[globals()['frameCount']], image = mbc).place(x = 300 + globals()['dealerCardTracker'] , y = 100)
         globals()['dealerCardTracker'] += 100
         globals()['imageCount'] += 1
-    
+
         p.draw(deck)
         getCardString(p.getSuit(),p.getVal())
         Label(frame_List[globals()['frameCount']], image = image_List[imageCount]).place(x = 300 + globals()['playerCardTracker'], y = 500)
         globals()['imageCount'] += 1
         globals()['playerCardTracker'] += 100
-        
+
         d.holdingDraw()
         getCardString(d.getSuit(),d.getVal())
         Label(frame_List[globals()['frameCount']], image = image_List[imageCount]).place(x = 300 + globals()['dealerCardTracker'] , y = 100)
@@ -385,7 +385,7 @@ def BlackJackGame():
         globals()['imageCount'] += 1
 
         Label(frame_List[globals()['frameCount']], text = str(p.score()),width = 7, font = ("Arial", 25)).place(x = 330, y = 680)  
-              
+
         hitButton_List[globals()['frameCount']].place(x = 300, y = 400)
         standButton_List[globals()['frameCount']].place(x = 375, y = 400)
         doubleButton_List[globals()['frameCount']].place(x = 450, y = 400)
@@ -507,12 +507,14 @@ def BlackJackGame():
     betLabel = Label(frame_List[0], font =("Arial", 15), text ="Intial Bet Size $: ").place(x=700, y = 650)
 
     pc = Image.open('cards/chip.png')
-    dpc = pc.resize((40, 40), Image.ANTIALIAS)
+    dpc = pc.resize((40, 40), Image.Resampling.LANCZOS)
     idpc = ImageTk.PhotoImage(dpc)
+
     bc = Image.open('cards/blue.png')
-    dbc = bc.resize((95,145), Image.ANTIALIAS)
-    imbc = ImageTk.PhotoImage(dbc)
-        
+    dbc = bc.resize((95, 145), Image.Resampling.LANCZOS)
+    mbc = ImageTk.PhotoImage(dbc)
+
+
     root.mainloop()
 
 
